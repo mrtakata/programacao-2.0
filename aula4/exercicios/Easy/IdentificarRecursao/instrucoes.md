@@ -1,0 +1,1 @@
+Esse exercicio contem varias implementacoes de funcoes. Comente na primeira linha do codigo identificando se essa funcao e uma recursao ou nao
