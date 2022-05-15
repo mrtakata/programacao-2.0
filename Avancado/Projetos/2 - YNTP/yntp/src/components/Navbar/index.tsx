@@ -24,7 +24,6 @@ const Navbar: React.FC = () => {
       px="2rem"
       backgroundColor={theme.colors.blackAlpha[50]}
       color={theme.colors.blackAlpha[800]}
-      
     >
       <input type="file" onChange={showFile} />
     </Box>
