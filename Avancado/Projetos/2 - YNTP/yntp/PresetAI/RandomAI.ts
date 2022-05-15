@@ -1,0 +1,5 @@
+{
+    nextMove: (): string => {
+        return "hehe";
+    }
+}
