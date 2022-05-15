@@ -1,7 +1,8 @@
 import { Place } from './Place';
 
 export interface BoardState {
-    board: Number[][],
+    board: number[][],
     playerPositions: Place[],
-    cookiePositions: Place[]
+    cookiePositions: Place[],
+    boardSize: Place
 }
