@@ -1,30 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Select from 'react-select'
 
-interface OptionProps {
-  value: string
-  label: string
-} 
+import { GameContext } from '../../context/gameContext'
 
-interface DropdownProps {
-  options: OptionProps[]
-}
+import { DropdownProps } from './types'
 
 const customStyles = {
-  option: (provided, { isSelected, isFocused }) => ({
+  option: (provided,) => ({
     ...provided,
     color: "black",
-    backgroundColor: isFocused || isSelected ? "lightgrey" : " white"
   })
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options }: DropdownProps) => {
-
-  const [_, setSelectedOption] = useState()
-
+const Dropdown: React.FC<DropdownProps> = ({ options, player }: DropdownProps) => {
+  const { setPlayerAI } = useContext(GameContext)
+  
   const handleChange = (option) => {
-    setSelectedOption(option)
-    console.log(option)
+    setPlayerAI(player, option)
+    console.log('option')
   }
   
   return (
@@ -38,4 +31,3 @@ const Dropdown: React.FC<DropdownProps> = ({ options }: DropdownProps) => {
 }
 
 export default Dropdown
-
