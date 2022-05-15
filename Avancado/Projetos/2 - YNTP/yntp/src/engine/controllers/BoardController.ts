@@ -1,8 +1,11 @@
 import { BoardState } from "../interfaces/BoardState";
 
+const defaultSize = 10;
 export class BoardController{
     private boardState: BoardState;
-    constructor() {
+    constructor(sizeX?: number, sizeY?: number) {
+        this.boardState.boardSize.xSize = sizeX || defaultSize;
+        this.boardState.boardSize.ySize = sizeY || defaultSize;
     }
     public getBoardState(){
         return this.boardState;
@@ -12,6 +15,7 @@ export class BoardController{
     };
     public updateBoardState(playerMoves: string[]) {
         playerMoves.forEach((move, playerIndex) => {
+            const previousPosition = this.boardState.playerPositions[playerIndex];
             switch (move) {
                 case "up":
                     this.boardState.playerPositions[playerIndex].positionY -= 1;
@@ -27,7 +31,9 @@ export class BoardController{
                     break;
                 default:
             }
-            Object(this.boardState.playerPositions[playerIndex]).keys.forEach((position) => {
+            Object.keys(this.boardState.playerPositions[playerIndex]).forEach((key: string) => {
+                const currentPosition = this.boardState.playerPositions[playerIndex][key];
+                
             })
         })
         this.paintBoard();
