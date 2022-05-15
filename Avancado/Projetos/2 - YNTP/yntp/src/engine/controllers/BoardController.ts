@@ -1,3 +1,4 @@
+import { Place } from "../interfaces/Place";
 import { BoardState } from "../interfaces/BoardState";
 import { cloneDeep } from "lodash";
 
@@ -10,14 +11,8 @@ export class BoardController{
         this.boardState.boardSize.positionY = sizeY || defaultSize;
         this.boardState.playerPositions = [];
         this.boardState.playerPositions = [];
-        this.boardState.playerPositions[0] = {
-            positionX: 0,
-            positionY: 0
-        }
-        this.boardState.playerPositions[1] = {
-            positionX: this.boardState.boardSize.positionX - 1,
-            positionY: this.boardState.boardSize.positionY - 1
-        }
+        this.boardState.playerPositions[0] = this.generateRandomPlace();
+        this.boardState.playerPositions[1] = this.getMirroredPosition(this.boardState.playerPositions[0]);
         this.paintBoardWithPlayerColor();
     }
 
@@ -74,7 +69,7 @@ export class BoardController{
         }
         
     }
-
+    
     public updateBoardState(playerMoves: string[]) {
         playerMoves.forEach((move, playerIndex) => {
             const previousPosition = cloneDeep(this.boardState.playerPositions[playerIndex]);
@@ -103,4 +98,49 @@ export class BoardController{
         })
         this.paintBoardWithPlayerColor();
     }
+
+    private generateRandomPlace(): Place{
+               
+        const xValue: number = Math.floor(Math.random() * (this.boardState.boardSize.positionX - 0 + 1)) + 0;
+        const yValue: number = Math.floor(Math.random() * (this.boardState.boardSize.positionY - 0 + 1)) + 0;
+
+        let place: Place;
+        place.positionX = xValue;
+        place.positionY = yValue;
+
+        return place;
+
+    }
+
+    private getMirroredPosition(place: Place): Place{
+        let mirroredPlace: Place;
+
+        mirroredPlace.positionX = this.boardState.boardSize.positionX - (place.positionX - 1);
+        mirroredPlace.positionY = this.boardState.boardSize.positionY - (place.positionY - 1);
+
+        return mirroredPlace;
+    }
+
+    private isCookieValidPosition(place: Place){
+        
+        return place.positionX < this.boardState.boardSize.positionX && 
+               place.positionY < this.boardState.boardSize.positionY &&
+               place.positionX >= 0 &&
+               place.positionX >= 0 &&
+               place != this.boardState.playerPositions[0] &&
+               place != this.boardState.playerPositions[1]
+
+    }
+
+    public generateCookie(): void{
+        let cookiePosition: Place = this.boardState.cookiePositions;
+
+        while (!this.isCookieValidPosition(cookiePosition)){
+            cookiePosition = this.generateRandomPlace();
+        }
+
+        this.boardState.cookiePositions = cookiePosition;
+
+    }
+
 }
