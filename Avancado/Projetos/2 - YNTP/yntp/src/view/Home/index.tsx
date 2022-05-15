@@ -5,12 +5,12 @@ import PlayerField from '../../components/PlayerField';
 import Navbar from '../../components/Navbar';
 import GameBoard from '../../components/GameBoard'
 
-import usePlayer from '../../hooks/usePlayer'
+import usePlayerList from '../../hooks/usePlayerList'
 
 import { Container } from './styles'
 
 const Home: React.FC = () => {
-  const { optionsPlayer1, optionsPlayer2 } = usePlayer()
+  const { playerList } = usePlayerList()
 
   return (
     <React.Fragment>
@@ -18,12 +18,12 @@ const Home: React.FC = () => {
       <Container>
         <PlayerField
           color={theme.colors.blue[800]}
-          options={optionsPlayer1}
+          options={playerList}
         />
         <GameBoard />
         <PlayerField
           color={theme.colors.red[800]}
-          options={optionsPlayer2}
+          options={playerList}
         />
       </Container>
     </React.Fragment>
