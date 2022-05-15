@@ -1,7 +1,5 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
-import { caramba } from './PlayerManager';
 
 class App extends Component {
 

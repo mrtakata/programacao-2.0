@@ -1,15 +1,27 @@
-import * as ts from "typescript";
-import * as fs from "fs";
+import { AI } from "./Model/AI";
 
-export function caramba() {
-    const reader = new FileReader();
-    let code: string =  fs.readFileSync("./PresetAI/RandomAI.ts").toString("utf8");
-    // let code: string = `({
-    //     Run: (data: string): string => {
-    //         console.log(data); return Promise.resolve("SUCCESS"); }
-    //     })`;
+export class PlayerManager {
+    private playerArray: AI[];
+    constructor() {
+    };
+
+    public setPlayer(aiName: string, port: number) {
+        const newPlayer = require(`./PresetAI/${aiName}`);
+        this.playerArray[port] = newPlayer.getPlayer();
+    }
+
+    public getPlayerList(): string[] {
+        return [];
+    }
     
-    let result = ts.transpile(code);
-    let runnable :any = eval(result);
-    runnable.Run("RUN!").then((result:string)=>{console.log(result);});
+    public runTurn(): string[] {
+        const playerMoves: string[] = [];
+        // Consider two players
+        // TODO: set timeout
+        for (let i = 0; i < 2; i++) {
+            playerMoves[i] = this.playerArray[i].nextMove();
+        }
+
+        return playerMoves;
+    }
 }
