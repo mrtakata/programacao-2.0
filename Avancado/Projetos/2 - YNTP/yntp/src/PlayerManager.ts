@@ -13,8 +13,8 @@ export class PlayerManager {
     public getPlayerList(): string[] {
         return [];
     }
-    
-    public runTurn(): string[] {
+
+    public getPlayerMoves(): string[] {
         const playerMoves: string[] = [];
         // Consider two players
         // TODO: set timeout
