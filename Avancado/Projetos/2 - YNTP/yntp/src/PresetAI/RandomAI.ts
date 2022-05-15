@@ -1,6 +1,7 @@
 import { AI } from "../Model/AI";
 
 export function getPlayer() {
+    if (Math.random())
     return new RandomAI("Hehe");
 }
 
