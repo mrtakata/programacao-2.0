@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
+import { PlayerManager } from './PlayerManager';
 
 class App extends Component {
 
+  private playerManager: PlayerManager = new PlayerManager();
   constructor(props) {
     super(props);
+    this.playerManager?.setPlayer("RandomAI", 0);
+    this.playerManager?.setPlayer("RandomAI", 1);
+    console.log(this.playerManager?.getPlayerList());
   }
 
   showFile = async (e) => {
