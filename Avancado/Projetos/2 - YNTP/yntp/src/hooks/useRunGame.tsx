@@ -10,7 +10,7 @@ const useRunGame = () => {
   const [boardState, setBoardState] = useState<any>()
 
   const { selectedAIs } = useContext(GameContext);
-
+  // TODO: selectedAI bug fix
   selectedAIs["1"] && playerManager?.setPlayer(selectedAIs["1"], 0);
   selectedAIs["2"] && playerManager?.setPlayer(selectedAIs["2"], 1);
 
@@ -28,8 +28,9 @@ const useRunGame = () => {
   }
 
   const playerMove = () => {
-    gameManager.runTurn(playerManager.getPlayerMoves(gameManager.getBoardState()))
     console.log('next')
+    console.log(playerManager.getPlayerMoves(gameManager.getBoardState()));
+    gameManager.runTurn(playerManager.getPlayerMoves(gameManager.getBoardState()))
   }
 
   return {

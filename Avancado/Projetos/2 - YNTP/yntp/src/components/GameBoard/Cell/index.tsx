@@ -4,12 +4,16 @@ import { CellStyled } from './styles';
 
 
 const Cell: React.FC<any> = (cellState: {
-    cellValue,
-    havePlayer,
-    haveCookie
+    cellValue: number,
+    playerIndex: number,
+    hasCookie: boolean
 }) => {
   return (
-    <CellStyled>
+    <CellStyled
+      value={cellState.cellValue}
+      playerindex={cellState.playerIndex}
+      hascookie={cellState.hasCookie.toString()}
+    >
       <Box
         display="flex"
         flexDirection="column"

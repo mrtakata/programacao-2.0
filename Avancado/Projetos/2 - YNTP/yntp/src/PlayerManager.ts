@@ -5,7 +5,6 @@ export class PlayerManager {
     private playerArray: AI[] = [];
 
     public setPlayer(aiName: string, port: number) {
-        console.log(aiName, port);
         const newPlayer = require(`./PresetAI/${aiName}`);
         this.playerArray[port] = newPlayer?.getPlayer(aiName);
     }

@@ -10,7 +10,7 @@ class RandomAI extends AI {
         super(name);
     }
     public nextMove(boardState: BoardState): string {
-        return "Random Play";
+        return "right";
     }
     public getAIName(): string {
         return this.AIName;

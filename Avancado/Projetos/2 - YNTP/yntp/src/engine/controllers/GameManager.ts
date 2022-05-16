@@ -17,7 +17,7 @@ export class GameManager{
     maxTurnToCookie: number;
     
     constructor(turns?: number, sizeX?: number, sizeY?: number, minTurnToCookie?: number, maxTurnToCookie?: number){
-        this.turns = turns || DEFAULTTURNS; 
+        this.turns = turns || DEFAULTTURNS;
         this.sizeX = sizeX || DEFAULTSIZE;
         this.sizeY = sizeY || DEFAULTSIZE;
         this.minTurnToCookie = minTurnToCookie || DEFAULTMINTURNSTOCOOKIE;

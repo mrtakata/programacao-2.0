@@ -30,7 +30,8 @@ export class BoardController{
         }
         this.boardState.playerPositions[0] = this.generateRandomPlace();
         this.boardState.playerPositions[1] = this.getMirroredPosition(this.boardState.playerPositions[0]);
-        // this.paintBoardWithPlayerColor();
+        console.log(this.boardState.board);
+        this.paintBoardWithPlayerColor();
     }
 
     public getBoardState(){
