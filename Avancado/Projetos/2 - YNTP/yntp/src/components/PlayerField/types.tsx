@@ -5,7 +5,5 @@ interface OptionProps {
   
 export interface PlayerFieldProps {
   color: string
-  options: OptionProps[]
   player: string
 }
-  

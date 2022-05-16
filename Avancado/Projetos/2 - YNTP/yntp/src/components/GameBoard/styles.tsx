@@ -6,4 +6,5 @@ export const Board = styled(Box)`
   height: 40vw;
   width: 40vw;
   color: ${theme.colors.blackAlpha[500]};
+  margin-bottom: 2rem;
 `

@@ -23,13 +23,13 @@ export const GameProvider = ({ children }) => {
   }
 
   return (
-      <GameContext.Provider value={{
-        setRunningGame,
-        isRunning,
-        setPlayerAI,
-        selectedAIs
-      }}>
-          {children}
-      </GameContext.Provider>
+    <GameContext.Provider value={{
+      setRunningGame,
+      isRunning,
+      setPlayerAI,
+      selectedAIs
+    }}>
+      {children}
+    </GameContext.Provider>
   )
 }

@@ -1,11 +1,15 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react'
 
+import usePlayerList from '../../hooks/usePlayerList'
+
 import Dropdown from '../Dropdown'
+
 import { PlayerFieldProps } from './types';
 
+const PlayerField: React.FC<PlayerFieldProps> = ({ color, player }: PlayerFieldProps) => {
+  const { playerList } = usePlayerList()
 
-const PlayerField: React.FC<PlayerFieldProps> = ({ color, options, player }: PlayerFieldProps) => {
   return (
     <Box
       p="2rem"
@@ -13,7 +17,7 @@ const PlayerField: React.FC<PlayerFieldProps> = ({ color, options, player }: Pla
       width={"min(20%, 350px)"}
     >
       <Dropdown
-        options={options}
+        options={playerList}
         player={player}
       />
     </Box>
@@ -21,4 +25,3 @@ const PlayerField: React.FC<PlayerFieldProps> = ({ color, options, player }: Pla
 }
 
 export default PlayerField
-
