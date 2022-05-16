@@ -10,7 +10,6 @@ const DEFAULTMAXTURNSTOCOOKIE = 10;
 export class GameManager{
     turns: number
     currentTurn: number
-    players: Place[]; // TODO remover o players
     BoardController: BoardController;
     sizeX: number;
     sizeY: number;
@@ -31,8 +30,6 @@ export class GameManager{
         this.currentTurn = 0;
 
         this.BoardController = new BoardController(this.sizeX, this.sizeY);
-
-       // this.BoardController.generateCookie(); // TODO: passar pro board controller
         
         if (this.vaiTerCookie) this.BoardController.generateCookie(); 
 
@@ -41,8 +38,6 @@ export class GameManager{
     public runTurn(movements: string[]): void{
 
         this.BoardController.updateBoardState(movements);
-        console.log("Board " + JSON.stringify(this.BoardController.getBoardState().board));
-        console.log("playerPositions " + JSON.stringify(this.BoardController.getBoardState().playerPositions));
         this.currentTurn++;
 
         if (this.vaiTerCookie) this.BoardController.generateCookie(); 
