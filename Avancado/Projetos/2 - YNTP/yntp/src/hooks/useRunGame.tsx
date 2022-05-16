@@ -1,24 +1,34 @@
+import { useEffect, useState } from "react";
 import { GameManager } from "../engine/controllers/GameManager";
 import { PlayerManager } from "../PlayerManager";
 
+const playerManager = new PlayerManager();
+
 const useRunGame = (player1: string, player2: string) => {
-    const playerManager = new PlayerManager();
+  const [gameManager, setGameManager] = useState<any>()
+
     playerManager?.setPlayer(player1, 0);
     playerManager?.setPlayer(player2, 1);
 
-    const gameManager = new GameManager(1, 3, 3, 10, 10);
-    gameManager.setupGame();
-
-    // Game loop
-    while (1) {
-      if (gameManager.endGame()) {
-        break;
-      }
-      gameManager.runTurn(playerManager.getPlayerMoves(gameManager.getBoardState()))
-      // render
+    const startGame = () => {
+      const gameManagerInst = new GameManager(1, 3, 3, 10, 10);
+      setGameManager(gameManagerInst)
+      gameManagerInst.setupGame();
+    }
+    
+    const endGame = () => {
+      gameManager.endGame()
     }
 
-    return {}
+    const playerMove = () => {
+      gameManager.runTurn(playerManager.getPlayerMoves(gameManager.getBoardState()))
+    }
+
+    return {
+      startGame,
+      endGame,
+      playerMove
+    }
   }
   
 export default useRunGame
