@@ -126,21 +126,20 @@ export class BoardController{
         const xValue: number = Math.floor(Math.random() * (this.boardState.boardSize.positionX - 0 + 1)) + 0;
         const yValue: number = Math.floor(Math.random() * (this.boardState.boardSize.positionY - 0 + 1)) + 0;
 
-        let place: Place;
-        place.positionX = xValue;
-        place.positionY = yValue;
+        let place: Place = {
+            positionX: xValue,
+            positionY: yValue
+        }
 
         return place;
 
     }
 
     private getMirroredPosition(place: Place): Place{
-        let mirroredPlace: Place;
-
-        mirroredPlace.positionX = this.boardState.boardSize.positionX - (place.positionX - 1);
-        mirroredPlace.positionY = this.boardState.boardSize.positionY - (place.positionY - 1);
-
-        return mirroredPlace;
+        return {
+            positionX: this.boardState.boardSize.positionX - (place.positionX - 1),
+            positionY: this.boardState.boardSize.positionY - (place.positionY - 1),
+        };
     }
 
     private isCookieValidPosition(place: Place){
