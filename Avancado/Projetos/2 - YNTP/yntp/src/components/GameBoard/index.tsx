@@ -5,15 +5,46 @@ import { Board } from './styles'
 import StartGame from '../StartGame';
 import Button from '../Button';
 import { GameContext } from '../../context/gameContext';
+import { BoardState } from '../../engine/interfaces/BoardState';
+import Cell from './Cell';
+import { Place } from '../../engine/interfaces/Place';
 
 
-const GameBoard: React.FC = () => {
+const RenderGrid: React.FC<BoardState> = ({
+  board,
+  cookiePositions,
+  playerPositions
+}: BoardState) => {
+  return <>
+    {
+      board?.map((row: Array<number>, rowIndex: number) => {
+        row?.map((cellValue: number, columnIndex: number) => {
+          const currentPlace: Place = {
+            positionX: columnIndex,
+            positionY: rowIndex
+          }
+          
+          return (
+            <Cell
+                cellValue= {cellValue}
+                havePlayer= {playerPositions.find((playerPosition) => playerPosition === currentPlace)}
+                haveCookie= {cookiePositions === currentPlace}
+            />
+          )
+        })
+      })
+    }
+  </>
+}
+
+const GameBoard: React.FC = (boardState: BoardState) => {
   const { isRunning, setRunningGame } = useContext(GameContext)
 
   const handleRestartGame = () => {
     setRunningGame(false)
   }
 
+  console.log(boardState);
   return (
     <>
       <Box
@@ -23,7 +54,9 @@ const GameBoard: React.FC = () => {
       >
         <StartGame />
         <Board>
-          GameBoard
+            <RenderGrid
+              {...boardState}
+            />
         </Board>
         {isRunning && 
           <Button
@@ -37,5 +70,6 @@ const GameBoard: React.FC = () => {
     </>
   )
 }
+
 
 export default GameBoard
