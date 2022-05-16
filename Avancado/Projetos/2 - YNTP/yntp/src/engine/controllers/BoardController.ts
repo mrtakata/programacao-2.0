@@ -22,6 +22,12 @@ export class BoardController{
                 positionY: -1
             }
         }
+        for (let i = 0; i < sizeY; i++) {
+            this.boardState.board[i] = [];
+            for (let j = 0; j < sizeX; j++) {
+                this.boardState.board[i].push(0)
+            }
+        }
         this.boardState.playerPositions[0] = this.generateRandomPlace();
         this.boardState.playerPositions[1] = this.getMirroredPosition(this.boardState.playerPositions[0]);
         // this.paintBoardWithPlayerColor();

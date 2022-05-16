@@ -8,6 +8,7 @@ import GameBoard from '../../components/GameBoard'
 import { GameProvider } from '../../context/gameContext';
 
 import { Container } from './styles'
+import useRunGame from '../../hooks/useRunGame';
 
 interface HomeProps {
   startGame: () => any
@@ -27,6 +28,7 @@ const Home: React.FC<HomeProps>= ({
     playerMove,
   }
 
+  const { boardState } = useRunGame()
   return (
     <GameProvider functions={functions}>
       <Navbar />
@@ -35,7 +37,9 @@ const Home: React.FC<HomeProps>= ({
           color={theme.colors.blue[800]}
           player="1"
         />
-        <GameBoard />
+        <GameBoard
+          {...boardState}
+        />
         <PlayerField
           color={theme.colors.red[800]}
           player="2"
