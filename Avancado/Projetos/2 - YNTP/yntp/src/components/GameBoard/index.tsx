@@ -18,7 +18,7 @@ const RenderGrid: React.FC<BoardState> = ({
   return <>
     {
       board?.map((row: Array<number>, rowIndex: number) => {
-        row?.map((cellValue: number, columnIndex: number) => {
+        return row?.map((cellValue: number, columnIndex: number) => {
           const currentPlace: Place = {
             positionX: columnIndex,
             positionY: rowIndex
