@@ -6,19 +6,32 @@ export class BoardController{
     private boardState: BoardState;
 
     constructor(sizeX?: number, sizeY?: number) {
-        this.boardState.boardSize.positionX = sizeX || defaultSize;
-        this.boardState.boardSize.positionY = sizeY || defaultSize;
-        this.boardState.playerPositions = [];
-        this.boardState.playerPositions = [];
-        this.boardState.playerPositions[0] = {
-            positionX: 0,
-            positionY: 0
+        this.boardState = {
+            boardSize: {
+                positionX: sizeX || defaultSize,
+                positionY: sizeY || defaultSize
+            },
+            playerPositions: [
+                {
+                    positionX: 0,
+                    positionY: 0,
+                },
+                {
+                    positionX: 2,
+                    positionY: 2
+                }
+            ],
+            board: [
+                [1, 2],
+                [2, 1]
+            ],
+            cookiePositions: {
+                positionX: -1,
+                positionY: -1
+            }
         }
-        this.boardState.playerPositions[1] = {
-            positionX: this.boardState.boardSize.positionX - 1,
-            positionY: this.boardState.boardSize.positionY - 1
-        }
-        this.paintBoardWithPlayerColor();
+
+        // this.paintBoardWithPlayerColor();
     }
 
     public getBoardState(){
@@ -33,6 +46,7 @@ export class BoardController{
             return;
         }
         for (let playerIndex = 0; playerIndex < 2; playerIndex++) {
+            console.log(this.boardState.board);
             const playerSquareIndexes = this.boardState.playerPositions[playerIndex];
             this.boardState.board
             [playerSquareIndexes.positionX]
@@ -101,6 +115,6 @@ export class BoardController{
                 }
             })
         })
-        this.paintBoardWithPlayerColor();
+        // this.paintBoardWithPlayerColor();
     }
 }

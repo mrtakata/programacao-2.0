@@ -1,3 +1,4 @@
+import { BoardState } from "./engine/interfaces/BoardState";
 import { AI } from "./Model/AI";
 
 export class PlayerManager {
@@ -14,12 +15,12 @@ export class PlayerManager {
         });
     }
 
-    public getPlayerMoves(): string[] {
+    public getPlayerMoves(boardState: BoardState): string[] {
         const playerMoves: string[] = [];
         // Consider two players
         // TODO: set timeout
         for (let i = 0; i < 2; i++) {
-            playerMoves[i] = this.playerArray[i]?.nextMove();
+            playerMoves[i] = this.playerArray[i]?.nextMove(boardState);
         }
 
         return playerMoves;

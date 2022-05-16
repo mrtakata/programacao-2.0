@@ -33,9 +33,6 @@ export class GameManager{
         this.currentTurn = 0;
 
         this.BoardController = new BoardController(this.sizeX, this.sizeY);
-        
-        this.players[0] = this.generateRandomPlace(); // TODO: passar pro board controller
-        this.players[1] = this.getMirroredPosition(this.players[0]); // TODO: passar pro board controller
 
        // this.BoardController.generateCookie(); // TODO: passar pro board controller
 
@@ -44,6 +41,7 @@ export class GameManager{
     public runTurn(movements: string[]): void{
 
         this.BoardController.updateBoardState(movements);
+        console.log("Board " + JSON.stringify(this.BoardController.getBoardState().board));
         this.currentTurn++;
 
        // if (this.vaiTerCookie) this.BoardController.generateCookie(); // TODO criar o método generateCookie
@@ -55,9 +53,10 @@ export class GameManager{
         const xValue: number = Math.floor(Math.random() * (this.sizeX - 0 + 1)) + 0;
         const yValue: number = Math.floor(Math.random() * (this.sizeY - 0 + 1)) + 0;
 
-        let place: Place;
-        place.positionX = xValue;
-        place.positionY = yValue;
+        let place: Place = {
+            positionX: xValue,
+            positionY: yValue
+        };
 
         return place;
 
