@@ -14,7 +14,6 @@ const Cell: React.FC<any> = (cellState: {
       flexDirection="column"
       pt="4rem"
     >
-      oi
     </Box>
   )
 }

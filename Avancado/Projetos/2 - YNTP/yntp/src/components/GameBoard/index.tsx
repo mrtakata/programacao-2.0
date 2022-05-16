@@ -15,7 +15,6 @@ const RenderGrid: React.FC<BoardState> = ({
   cookiePositions,
   playerPositions
 }: BoardState) => {
-  console.log(board);
   return <>
     {
       board?.map((row: Array<number>, rowIndex: number) => {
@@ -24,8 +23,7 @@ const RenderGrid: React.FC<BoardState> = ({
             positionX: columnIndex,
             positionY: rowIndex
           }
-          
-          console.log("where are u");
+
           return (
             <Cell
               cellValue= {cellValue}
