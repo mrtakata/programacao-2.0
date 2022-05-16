@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Box, theme } from'@chakra-ui/react'
+import { CellStyled } from './styles';
 
 
 const Cell: React.FC<any> = (cellState: {
@@ -7,14 +8,16 @@ const Cell: React.FC<any> = (cellState: {
     havePlayer,
     haveCookie
 }) => {
-  console.log("cell?");
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      pt="4rem"
-    >
-    </Box>
+    <CellStyled>
+      <Box
+        display="flex"
+        flexDirection="column"
+        pt="4rem"
+      >
+      </Box>
+    </CellStyled>
+    
   )
 }
 export default Cell
