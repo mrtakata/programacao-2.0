@@ -15,6 +15,7 @@ const RenderGrid: React.FC<BoardState> = ({
   cookiePositions,
   playerPositions
 }: BoardState) => {
+  console.log(board);
   return <>
     {
       board?.map((row: Array<number>, rowIndex: number) => {
@@ -24,11 +25,12 @@ const RenderGrid: React.FC<BoardState> = ({
             positionY: rowIndex
           }
           
+          console.log("where are u");
           return (
             <Cell
-                cellValue= {cellValue}
-                havePlayer= {playerPositions.find((playerPosition) => playerPosition === currentPlace)}
-                haveCookie= {cookiePositions === currentPlace}
+              cellValue= {cellValue}
+              havePlayer= {playerPositions.find((playerPosition) => playerPosition === currentPlace)}
+              haveCookie= {cookiePositions === currentPlace}
             />
           )
         })
@@ -45,7 +47,6 @@ const GameBoard: React.FC<BoardState> = (boardState: BoardState) => {
     setRunningGame(false)
   }
 
-  console.log(boardState);
   return (
     <>
       <Box

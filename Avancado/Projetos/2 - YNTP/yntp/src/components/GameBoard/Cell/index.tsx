@@ -7,15 +7,15 @@ const Cell: React.FC<any> = (cellState: {
     havePlayer,
     haveCookie
 }) => {
+  console.log("cell?");
   return (
-    <>
-        <Box
-            display="flex"
-            flexDirection="column"
-            pt="4rem"
-        >
-        </Box>
-    </>
+    <Box
+      display="flex"
+      flexDirection="column"
+      pt="4rem"
+    >
+      oi
+    </Box>
   )
 }
 export default Cell
