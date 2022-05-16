@@ -5,10 +5,11 @@ import Button from '../Button';
 
 
 const StartGame: React.FC = () => {
-  const { isRunning, setRunningGame } = useContext(GameContext)
+  const { isRunning, setRunningGame, startGame } = useContext(GameContext)
 
   const handleStartGame = () => {
     setRunningGame(true)
+    startGame()
   }
 
   return !isRunning ? (

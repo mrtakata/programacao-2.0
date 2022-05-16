@@ -9,10 +9,26 @@ import { GameProvider } from '../../context/gameContext';
 
 import { Container } from './styles'
 
-const Home: React.FC = () => {
+interface HomeProps {
+  startGame: () => any
+  endGame: () => any
+  playerMove: () => any
+}
+
+const Home: React.FC<HomeProps>= ({
+  startGame,
+  endGame,
+  playerMove
+}) => {
+
+  const functions = {
+    startGame,
+    endGame,
+    playerMove,
+  }
 
   return (
-    <GameProvider>
+    <GameProvider functions={functions}>
       <Navbar />
       <Container>
         <PlayerField

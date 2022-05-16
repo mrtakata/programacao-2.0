@@ -7,9 +7,13 @@ import Home from './view/Home'
 
 const App: React.FC = () => {
   // ver arquivo hooks/useInitialize
-  useRunGame("RandomAI", "GreedyAI");
+  const {startGame, endGame, playerMove } = useRunGame("RandomAI", "GreedyAI");
   
-  return <Home />
+  return <Home
+    startGame={startGame}
+    endGame={endGame}
+    playerMove={playerMove}
+  />
 }
 
 export default App;

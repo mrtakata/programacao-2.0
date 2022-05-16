@@ -5,11 +5,17 @@ export const GameContext = createContext({
   selectedAIs: {},
   setRunningGame: (_state) => {},
   setPlayerAI: (_player, _ai) => {},
+  startGame: () => {},
+  endGame:  () => {},
+  playerMove:  () => {},
 })
 
-export const GameProvider = ({ children }) => {
+
+
+export const GameProvider = ({ children, functions }) => {
   const [isRunning, setRunning] = useState(false)
   const [selectedAIs, setSelectedAIs] = useState({})
+  const { startGame, endGame, playerMove } = functions
 
   const setRunningGame = (state) => {
     setRunning(state)
@@ -27,7 +33,10 @@ export const GameProvider = ({ children }) => {
       setRunningGame,
       isRunning,
       setPlayerAI,
-      selectedAIs
+      selectedAIs,
+      startGame,
+      endGame,
+      playerMove,
     }}>
       {children}
     </GameContext.Provider>

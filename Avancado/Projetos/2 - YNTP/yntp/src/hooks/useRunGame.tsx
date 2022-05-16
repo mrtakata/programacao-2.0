@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { GameManager } from "../engine/controllers/GameManager";
 import { PlayerManager } from "../PlayerManager";
 

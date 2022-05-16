@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Box, theme } from '@chakra-ui/react'
 
 import usePlayerList from '../../hooks/usePlayerList'
@@ -7,11 +7,15 @@ import Dropdown from '../Dropdown'
 import Button from '../Button'
 
 import { PlayerFieldProps } from './types'
+import { GameContext } from '../../context/gameContext';
 
 const PlayerField: React.FC<PlayerFieldProps> = ({ color, player }: PlayerFieldProps) => {
+  
   const { playerList } = usePlayerList()
+  const { playerMove } = useContext(GameContext)
+
   const handleNextMove = () => {
-    console.log('proxima jogada')
+    playerMove()
   }
 
   return (

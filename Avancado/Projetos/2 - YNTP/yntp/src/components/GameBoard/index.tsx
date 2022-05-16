@@ -8,9 +8,10 @@ import { GameContext } from '../../context/gameContext';
 
 
 const GameBoard: React.FC = () => {
-  const { isRunning, setRunningGame } = useContext(GameContext)
+  const { isRunning, setRunningGame, endGame } = useContext(GameContext)
 
   const handleRestartGame = () => {
+    endGame()
     setRunningGame(false)
   }
 
