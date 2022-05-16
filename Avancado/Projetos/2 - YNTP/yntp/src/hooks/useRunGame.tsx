@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { GameContext } from "../context/gameContext";
 import { GameManager } from "../engine/controllers/GameManager";
 import { PlayerManager } from "../PlayerManager";
@@ -7,6 +7,7 @@ const playerManager = new PlayerManager();
 
 const useRunGame = () => {
   const [gameManager, setGameManager] = useState<any>()
+  const [boardState, setBoardState] = useState<any>()
 
   const { selectedAIs } = useContext(GameContext);
 
@@ -17,21 +18,25 @@ const useRunGame = () => {
     const gameManagerInst = new GameManager(1, 3, 3, 10, 10);
     setGameManager(gameManagerInst)
     gameManagerInst.setupGame();
+    console.log('start')
+    setBoardState(gameManagerInst.getBoardState())
   }
   
   const endGame = () => {
     gameManager.endGame()
+    console.log('end')
   }
 
   const playerMove = () => {
     gameManager.runTurn(playerManager.getPlayerMoves(gameManager.getBoardState()))
+    console.log('next')
   }
 
   return {
     startGame,
     endGame,
     playerMove,
-    boardState: gameManager?.getBoardState()
+    boardState
   }
 }
   

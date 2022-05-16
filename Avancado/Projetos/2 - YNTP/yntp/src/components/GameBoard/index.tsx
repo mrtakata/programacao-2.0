@@ -37,7 +37,7 @@ const RenderGrid: React.FC<BoardState> = ({
   </>
 }
 
-const GameBoard: React.FC = (boardState: BoardState) => {
+const GameBoard: React.FC<BoardState> = (boardState: BoardState) => {
   const { isRunning, setRunningGame, endGame } = useContext(GameContext)
 
   const handleRestartGame = () => {
