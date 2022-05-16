@@ -1,6 +1,5 @@
 const useInitialize = () => {
-  console.log('initialize')
-  
+  console.log('initialize');
   return {}
 }
 

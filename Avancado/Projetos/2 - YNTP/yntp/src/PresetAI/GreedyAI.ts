@@ -2,15 +2,15 @@ import { BoardState } from "../engine/interfaces/BoardState";
 import { AI } from "../Model/AI";
 
 export function getPlayer() {
-    return new RandomAI("Hehe");
+    return new GreedyAI("Hehe");
 }
 
-class RandomAI extends AI {
+class GreedyAI extends AI {
     constructor(name: string) {
         super(name);
     }
     public nextMove(boardState: BoardState): string {
-        return "Random Play";
+        return "Greedy Play";
     }
     public getAIName(): string {
         return this.AIName;

@@ -1,13 +1,8 @@
 import { v4 as uuid } from 'uuid'
-import { PlayerManager } from '../PlayerManager'
+import { aiList } from '../PresetAI/AIList'
 
 const usePlayerList = () => {
-  const playerManager = new PlayerManager();
-  
-  playerManager?.setPlayer("RandomAI", 0);
-  playerManager?.setPlayer("RandomAI", 1);
-  
-  const playerList = playerManager?.getPlayerList()
+  const playerList = aiList;
   const mappedPlayerList = playerList.map(item => (
     {
       value: `item-${uuid()}`,

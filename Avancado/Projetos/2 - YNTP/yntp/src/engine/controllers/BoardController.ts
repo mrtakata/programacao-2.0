@@ -1,3 +1,4 @@
+import { Place } from "../interfaces/Place";
 import { BoardState } from "../interfaces/BoardState";
 import { cloneDeep } from "lodash";
 
@@ -6,19 +7,24 @@ export class BoardController{
     private boardState: BoardState;
 
     constructor(sizeX?: number, sizeY?: number) {
-        this.boardState.boardSize.positionX = sizeX || defaultSize;
-        this.boardState.boardSize.positionY = sizeY || defaultSize;
-        this.boardState.playerPositions = [];
-        this.boardState.playerPositions = [];
-        this.boardState.playerPositions[0] = {
-            positionX: 0,
-            positionY: 0
+        this.boardState = {
+            boardSize: {
+                positionX: sizeX || defaultSize,
+                positionY: sizeY || defaultSize
+            },
+            playerPositions: [],
+            board: [
+                [1, 2],
+                [2, 1]
+            ],
+            cookiePositions: {
+                positionX: -1,
+                positionY: -1
+            }
         }
-        this.boardState.playerPositions[1] = {
-            positionX: this.boardState.boardSize.positionX - 1,
-            positionY: this.boardState.boardSize.positionY - 1
-        }
-        this.paintBoardWithPlayerColor();
+        this.boardState.playerPositions[0] = this.generateRandomPlace();
+        this.boardState.playerPositions[1] = this.getMirroredPosition(this.boardState.playerPositions[0]);
+        // this.paintBoardWithPlayerColor();
     }
 
     public getBoardState(){
@@ -74,7 +80,7 @@ export class BoardController{
         }
         
     }
-
+    
     public updateBoardState(playerMoves: string[]) {
         playerMoves.forEach((move, playerIndex) => {
             const previousPosition = cloneDeep(this.boardState.playerPositions[playerIndex]);
@@ -97,10 +103,54 @@ export class BoardController{
             Object.keys(this.boardState.playerPositions[playerIndex]).forEach((key: string) => {
                 const currentPosition = this.boardState.playerPositions[playerIndex][key];
                 if (currentPosition < 0 || currentPosition > this.boardState.boardSize[key]) {
-                    this.boardState.playerPositions[playerIndex][key] = previousPosition;
+                    this.boardState.playerPositions[playerIndex][key] = previousPosition[key];
                 }
             })
         })
-        this.paintBoardWithPlayerColor();
+        // this.paintBoardWithPlayerColor();
     }
+
+    private generateRandomPlace(): Place{
+               
+        const xValue: number = Math.floor(Math.random() * (this.boardState.boardSize.positionX));
+        const yValue: number = Math.floor(Math.random() * (this.boardState.boardSize.positionY));
+
+        let place: Place = {
+            positionX: xValue,
+            positionY: yValue
+        }
+
+        return place;
+
+    }
+
+    private getMirroredPosition(place: Place): Place{
+        return {
+            positionX: this.boardState.boardSize.positionX - (place.positionX) - 1,
+            positionY: this.boardState.boardSize.positionY - (place.positionY) - 1,
+        };
+    }
+
+    private isCookieValidPosition(place: Place){
+        
+        return place.positionX < this.boardState.boardSize.positionX && 
+               place.positionY < this.boardState.boardSize.positionY &&
+               place.positionX >= 0 &&
+               place.positionX >= 0 &&
+               place != this.boardState.playerPositions[0] &&
+               place != this.boardState.playerPositions[1]
+
+    }
+
+    public generateCookie(): void{
+        let cookiePosition: Place = this.boardState.cookiePositions;
+
+        while (!this.isCookieValidPosition(cookiePosition)){
+            cookiePosition = this.generateRandomPlace();
+        }
+
+        this.boardState.cookiePositions = cookiePosition;
+
+    }
+
 }
