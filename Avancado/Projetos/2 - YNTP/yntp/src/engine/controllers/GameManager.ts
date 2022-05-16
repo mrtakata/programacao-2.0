@@ -42,6 +42,7 @@ export class GameManager{
 
         this.BoardController.updateBoardState(movements);
         console.log("Board " + JSON.stringify(this.BoardController.getBoardState().board));
+        console.log("playerPositions " + JSON.stringify(this.BoardController.getBoardState().playerPositions));
         this.currentTurn++;
 
         if (this.vaiTerCookie) this.BoardController.generateCookie(); 
@@ -72,7 +73,4 @@ export class GameManager{
         if (this.currentTurn >= this.turns) return true;
         else return false;
     };
-
-
-
 }

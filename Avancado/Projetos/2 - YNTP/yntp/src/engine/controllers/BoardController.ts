@@ -12,16 +12,7 @@ export class BoardController{
                 positionX: sizeX || defaultSize,
                 positionY: sizeY || defaultSize
             },
-            playerPositions: [
-                {
-                    positionX: 0,
-                    positionY: 0,
-                },
-                {
-                    positionX: 2,
-                    positionY: 2
-                }
-            ],
+            playerPositions: [],
             board: [
                 [1, 2],
                 [2, 1]
@@ -33,7 +24,6 @@ export class BoardController{
         }
         this.boardState.playerPositions[0] = this.generateRandomPlace();
         this.boardState.playerPositions[1] = this.getMirroredPosition(this.boardState.playerPositions[0]);
-
         // this.paintBoardWithPlayerColor();
     }
 
@@ -49,7 +39,6 @@ export class BoardController{
             return;
         }
         for (let playerIndex = 0; playerIndex < 2; playerIndex++) {
-            console.log(this.boardState.board);
             const playerSquareIndexes = this.boardState.playerPositions[playerIndex];
             this.boardState.board
             [playerSquareIndexes.positionX]
@@ -114,7 +103,7 @@ export class BoardController{
             Object.keys(this.boardState.playerPositions[playerIndex]).forEach((key: string) => {
                 const currentPosition = this.boardState.playerPositions[playerIndex][key];
                 if (currentPosition < 0 || currentPosition > this.boardState.boardSize[key]) {
-                    this.boardState.playerPositions[playerIndex][key] = previousPosition;
+                    this.boardState.playerPositions[playerIndex][key] = previousPosition[key];
                 }
             })
         })
@@ -123,8 +112,8 @@ export class BoardController{
 
     private generateRandomPlace(): Place{
                
-        const xValue: number = Math.floor(Math.random() * (this.boardState.boardSize.positionX - 0 + 1)) + 0;
-        const yValue: number = Math.floor(Math.random() * (this.boardState.boardSize.positionY - 0 + 1)) + 0;
+        const xValue: number = Math.floor(Math.random() * (this.boardState.boardSize.positionX));
+        const yValue: number = Math.floor(Math.random() * (this.boardState.boardSize.positionY));
 
         let place: Place = {
             positionX: xValue,
@@ -137,8 +126,8 @@ export class BoardController{
 
     private getMirroredPosition(place: Place): Place{
         return {
-            positionX: this.boardState.boardSize.positionX - (place.positionX - 1),
-            positionY: this.boardState.boardSize.positionY - (place.positionY - 1),
+            positionX: this.boardState.boardSize.positionX - (place.positionX) - 1,
+            positionY: this.boardState.boardSize.positionY - (place.positionY) - 1,
         };
     }
 

@@ -10,7 +10,7 @@ class GreedyAI extends AI {
         super(name);
     }
     public nextMove(boardState: BoardState): string {
-        return "Greedy";
+        return "Greedy Play";
     }
     public getAIName(): string {
         return this.AIName;

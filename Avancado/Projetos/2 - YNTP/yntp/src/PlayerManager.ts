@@ -22,7 +22,7 @@ export class PlayerManager {
         for (let i = 0; i < 2; i++) {
             playerMoves[i] = this.playerArray[i]?.nextMove(boardState);
         }
-
+        console.log("PM " + playerMoves.join(" "));
         return playerMoves;
     }
 }
